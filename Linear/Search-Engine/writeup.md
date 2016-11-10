@@ -204,11 +204,13 @@ Rank 1 Database:
 
 Queries:
 
-(1) Baking bread. = |1|0|1|0|0|0|
-                    |----|----|----|----|----|----|
-(2) Baking.
-(3) What is the difference between pastry and bread?
-(4) Show me all recipes for pastry.
+
+|Query|Vectors|
+|----|----|----|----|----|----|
+|(1) Baking bread. = |1|0|1|0|0|0|
+|(2) Baking. = |1|0|0|0|0|0|
+|(3) What is the difference between pastry and bread?|
+|(4) Show me all recipes for pastry.|0|0|0|0|1|0
 (5) A query of your devising. (Specify.)
 
 #### Rank 4 Database Results:
