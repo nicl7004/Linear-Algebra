@@ -141,4 +141,78 @@ We see above the last 1 in the identity matrix getting cut off.  This may be a r
 
 ## Rank Approximation:
 
-In order to get a rank K approximation of A, we set the rank of R equal to K and then proceed to carry out our multiplication of A = QR.
+In order to get a rank K approximation of A, we set the last K rows of R equal to 0.  We then proceed to carry out our multiplication of A = QR.
+
+The code I used to implement this is as follows:
+
+    for x = z:k
+        r(x,:) = 0;
+    end
+
+    r
+    newA = qnorm*r;
+
+Where z is the desired rank, and K is the number of rows present in r.
+
+#### Reduced Databases:
+
+Rank 4 Database:
+
+|1.0000 |        0 |   0.0000 |   1.0000 |  -0.0000|
+|----|----|----|----|----|
+    |1.0000 |        0|    1.0000 |   1.0000 |   1.0000|
+|    1.0000 |        0 |   0.0000 |   1.0000  | -0.0000|
+|   -0.0000 |        0 |  -0.0000 |   1.0000 |  -0.0000|
+|         0  |  1.0000 |        0  |  1.0000 |   1.0000|
+|   -0.0000 |        0 |  -0.0000 |   1.0000 |  -0.0000|
+
+
+
+Rank 3 Database:
+
+|1.0000|         0  |  0.0000  |  1.0000 |  -0.0000|
+|----|----|----|----|----|
+|  1.0000  |       0  |  1.0000   | 1.0000  |  1.0000|
+|  1.0000 |        0  |  0.0000  |  1.0000 |  -0.0000|
+|       0   |      0 |        0 |        0 |        0|
+|       0 |   1.0000|         0 |   1.0000 |   1.0000|
+|       0  |       0 |        0  |       0|         0|
+
+
+Rank 2 Database:
+
+|1.0000    |     0 |   0.3333 |   1.0000|    0.3333|
+|----|----|----|----|----|
+|   1.0000|         0    |0.3333|    1.0000    |0.3333|
+|   1.0000 |        0   | 0.3333 |   1.0000   | 0.3333|
+|        0  |       0  |       0  |       0  |       0|
+|        0   | 1.0000 |        0   | 1.0000 |   1.0000|
+|        0    |     0|         0    |     0|         0|
+
+Rank 1 Database:
+
+|1.0000         |0|    0.3333 |   1.0000  |  0.3333|
+|----|----|----|----|----|
+|    1.0000    |     0    |0.3333 |   1.0000  |  0.3333|
+|    1.0000   |      0   | 0.3333  |  1.0000  |  0.3333|
+|         0  |       0  |       0    |     0     |    0|
+|         0 |        0 |        0    |     0     |    0|
+|         0|         0|         0    |     0    |    0|
+
+
+## Queries and Results
+
+Queries:
+
+(1) Baking bread. = |1|0|1|0|0|0|
+                    |----|----|----|----|----|----|
+(2) Baking.
+(3) What is the difference between pastry and bread?
+(4) Show me all recipes for pastry.
+(5) A query of your devising. (Specify.)
+
+#### Rank 4 Database Results:
+
+|Query Number:|1|2|3|4|5|
+|----|----|----|----|----|----|
+|Results|
