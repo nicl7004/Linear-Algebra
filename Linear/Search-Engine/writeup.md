@@ -205,16 +205,36 @@ Rank 1 Database:
 Queries:
 
 
-|Query|Vectors|
+|Query|
 |----|----|----|----|----|----|
 |(1) Baking bread. = |1|0|1|0|0|0|
 |(2) Baking. = |1|0|0|0|0|0|
-|(3) What is the difference between pastry and bread?|
-|(4) Show me all recipes for pastry.|0|0|0|0|1|0
-(5) A query of your devising. (Specify.)
+|(3) What is the difference between pastry and bread?|Pastry-Bread|
+|(4) Show me all recipes for pastry.|0|0|0|0|1|0|
+|(5) A query of your devising. (Cake)|0|0|0|1|0|0|
+
+* All queries used 0.5 as the cosine cut off for similarity
 
 #### Rank 4 Database Results:
 
 |Query Number:|1|2|3|4|5|
 |----|----|----|----|----|----|
-|Results|
+|Results|Columns 1 and 4|Column 1| Bread returned column one, Pastry returned columns two and five|Columns 2 and 5| Returned None|
+
+#### Rank 3 Database Results:
+
+|Query Number:|1|2|3|4|5|
+|----|----|----|----|----|----|
+|Results|Columns 1 and 4|Column 1 and 4| Bread returned columns one and four, Pastry returned columns two and five|Columns 2 and 5| Returned None|
+
+#### Rank 2 Database Results:
+
+|Query Number:|1|2|3|4|5|
+|----|----|----|----|----|----|
+|Results|Columns 1, 3, and 4|Column 1, 3, and 4| Bread returned columns one, three, and four, Pastry returned columns two, four, and five|Columns 2, 4, and 5| Returned None|
+
+#### Rank 1 Database Results:
+
+|Query Number:|1|2|3|4|5|
+|----|----|----|----|----|----|
+|Results|Columns 1, 3, 4, 5|Column 1, 3, 4 and 5| Bread returned columns one, three, four, and five, Pastry returned none|Returned None| Returned None|
