@@ -21,16 +21,16 @@ We know mathematically that redundancy in a matrix occurs when its rank is small
     U = zeros(n,k);
 
 
-    U(:,1) = a(:,1)/sqrt(a(:,1)'*a(:,1)); %inital case
+    U(:,1) = a(:,1)/sqrt(a(:,1)'* a(:,1)); %inital case
 
     for i = 2:k
         U(:,i) = a(:,i);
         for j = 1:i-1
-            U(:,i) = U(:,i) - ((U(:,i)'*U(:,j))*U(:,j));
+            U(:,i) = U(:,i) - ((U(:,i)'* U(:,j))* U(:,j));
         end
-        (sqrt(U(:,i)'*U(:,i)));
-        if (sqrt(U(:,i)'*U(:,i)))~=0
-             U(:,i) = U(:,i)/(sqrt(U(:,i)'*U(:,i)));
+        (sqrt(U(:,i)'* U(:,i)));
+        if (sqrt(U(:,i)'* U(:,i)))~=0
+             U(:,i) = U(:,i)/(sqrt(U(:,i)'* U(:,i)));
         end
     end
     %get rid of nan
@@ -72,10 +72,10 @@ We know mathematically that redundancy in a matrix occurs when its rank is small
     end
 
 
-    i = qnorm'*qnorm
+    i = qnorm'* qnorm
     qnorm
-    r = qnorm'*a
-    don = qnorm*r;
+    r = qnorm'* a
+    don = qnorm* r;
 
 
 
@@ -139,14 +139,6 @@ When we multiply Q*R we get A:
 
 We see above the last 1 in the identity matrix getting cut off.  This may be a result of our rank reduction in QR decomposition.
 
+## Rank Approximation:
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-## History
-TODO: Write history
-## Credits
-TODO: Write credits
-## License
+In order to get a rank K approximation of A, we set the rank of R equal to K and then proceed to carry out our multiplication of A = QR.

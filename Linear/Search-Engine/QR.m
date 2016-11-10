@@ -1,4 +1,4 @@
-function don = QR(a)
+function don = QR(a,z)
 % 
 % %this script implements the QR factorization as seen in 
 % %section 6.4 of the text
@@ -61,11 +61,18 @@ for x = 1:k
 end
 
 
-swag = qnorm'*qnorm
-qnorm
-r = qnorm'*a
-don = qnorm*r;
+swag = qnorm'*qnorm;
+qnorm;
+r = qnorm'*a;
 
+
+r
+for x = z:n
+    r(x,:) = 0;
+end
+
+r
+don = qnorm*r;
 % [m, n] = size(A);
 % Q = zeros(m,n);
 % R = zeros(n);
