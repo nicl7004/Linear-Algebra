@@ -9,8 +9,7 @@ This is part two of Application two, a Search Engine that uses cosine comparison
 We know mathematically that redundancy in a matrix occurs when its rank is smaller than its number of columns.  This signals that we have at least one linearly dependent column.  We can combat these issues by identifying a basis for the column space, and one way to calculate a basis for the column space is through the Gram-Schmidt process (A = QR).
 
 #### Gram-Schmidt Process in MATLAB:
-    function don = QR(a)
-    %
+
     % %this script implements the QR factorization as seen in
     % %section 6.4 of the text
     %
@@ -29,7 +28,7 @@ We know mathematically that redundancy in a matrix occurs when its rank is small
             U(:,i) = U(:,i) - ((U(:,i)'* U(:,j))* U(:,j));
         end
         (sqrt(U(:,i)'* U(:,i)));
-        if (sqrt(U(:,i)'* U(:,i)))~=0
+        if (sqrt(U(:,i)'*U(:,i)))~=0
              U(:,i) = U(:,i)/(sqrt(U(:,i)'* U(:,i)));
         end
     end
@@ -72,12 +71,18 @@ We know mathematically that redundancy in a matrix occurs when its rank is small
     end
 
 
-    i = qnorm'* qnorm
-    qnorm
-    r = qnorm'* a
-    don = qnorm* r;
+    swag = qnorm'* qnorm;
+    qnorm;
+    r = qnorm'* a;
 
 
+
+    for x = z:k
+        r(x,:) = 0;
+    end
+
+    r
+    newA = qnorm*r;
 
 
 #### Results:
@@ -245,4 +250,4 @@ After seeing the results of our test cases, I recommend using a cosine cutoff of
 
 Our cosine cutoff is a measure of confidence for the strength of correlation between two documents.  In a realistic situation our cutoff would likely be around 0.9, but for our limited data and queries I recommend our cutoff to be 0.5.  This cosine cutoff still yields some level of similarity and factors discrepancies out, but allows more results to be associated with our queries.
 
-With using a cosine cutoff of three, I also recommend using a `rank size of three`.  We can see in the above charts that there is one subtle difference between our rank four database and our rank three database.  When viewing our rank two and rank one results we can see that there are some major differences between rank two and rank four.  For this reason, rank reducing to three will provide our sample database with the best balance of efficiency and reliability/accuracy.  Rank one results are very far off base, with nearly every entry in the database returning true or nothing returning true for our q1-q5 queries.
+With using a cosine cutoff of 0.5, I also recommend using a `rank size of three`.  We can see in the above charts that there is one subtle difference between our rank four database and our rank three database.  When viewing our rank two and rank one results we can see that there are some major differences between these and rank four.  For this reason, rank reducing to three will provide our sample database with the best balance of efficiency and reliability/accuracy.  Rank one results are very far off base, with nearly every entry in the database returning true or nothing returning true for our q1-q5 queries.
