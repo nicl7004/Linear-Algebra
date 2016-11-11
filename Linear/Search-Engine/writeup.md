@@ -238,3 +238,11 @@ Queries:
 |Query Number:|1|2|3|4|5|
 |----|----|----|----|----|----|
 |Results|Columns 1, 3, 4, 5|Column 1, 3, 4 and 5| Bread returned columns one, three, four, and five, Pastry returned none|Returned None| Returned None|
+
+
+## Analysis
+After seeing the results of our test cases, I recommend using a cosine cutoff of 0.5, and a rank size of 3 for this particular data set.
+
+Our cosine cutoff is a measure of confidence for the strength of correlation between two documents.  In a realistic situation our cutoff would likely be around 0.9, but for our limited data and queries I recommend our cutoff to be 0.5.  This cosine cutoff still yields some level of similarity and factors discrepancies out, but allows more results to be associated with our queries.
+
+With using a cosine cutoff of three, I also recommend using a `rank size of three`.  We can see in the above charts that there is one subtle difference between our rank four database and our rank three database.  When viewing our rank two and rank one results we can see that there are some major differences between rank two and rank four.  For this reason, rank reducing to three will provide our sample database with the best balance of efficiency and reliability/accuracy.  Rank one results are very far off base, with nearly every entry in the database returning true or nothing returning true for our q1-q5 queries.
