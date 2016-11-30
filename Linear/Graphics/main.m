@@ -39,19 +39,18 @@ S4 = sized(c4);
 S5 = sized(c5);
 S6 = sized(c6);
 
-R3 = turn(-pi/4,2);
-R4 = turn(5*pi/4,2);
+P = trappos();
 G = rectpos();
-R = turn(pi/2,1);
 R1 = turn(pi/2,3);
 R2 = turn(pi/2,1);
-P = trappos();
+R3 = turn(-pi/4,2);
+R4 = turn(5*pi/4,2);
 
-Left =R1*(R*(S1*G));
+Left =R1*(R2*(S1*G));
 Right = T1*(Left);
 Front = R2*P;
 Back = T2 * Front;
-Door1 = T3*(R*(S2*G));
+Door = R1*(R2*(S2*G));
 
 Leftroof = T5*(R3*(S4*G));
 Rightroof = T6*(R4*(S4*G));
@@ -122,19 +121,19 @@ A(:,:,63) = [.5;1.2;0;];
 A(:,:,64) = [.5;1.1;0;];
 % plot fence
 for i = 1:64
-    fence = translate(A(:,:,i))*(R1*((R*(S6*P))));
+    fence = translate(A(:,:,i))*(R1*((R2*(S6*P))));
     draw(fence, 'b');
 end
 
 %Plot the house
-
+%walls
 draw(Front, 'y');
 draw(Back, 'y');
 draw(Left,'y');
 draw(Right,'y');
-
-draw(Door1, 'r');
-
+% door
+draw(Door, 'r');
+% triangle that makes the roof
 draw(Rightroof, 'g');
 draw(Leftroof, 'g');
 
